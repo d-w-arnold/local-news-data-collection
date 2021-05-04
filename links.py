@@ -55,7 +55,7 @@ def gen_dict_of_links(links, output_dir_name):
     total_links = 0
     for x in links:
         try:
-            url_proto_domain = re.search('(http[s]?://)?([^/\s]+)', x).group(0)
+            url_proto_domain = re.search('(http[s]?://)?([^/\\s]+)', x).group(0)
             req = Request(x)
             html_page = urlopen(req)
             links = []
