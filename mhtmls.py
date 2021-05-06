@@ -39,6 +39,7 @@ def save_webpage_from_URL(driver, link, output_dir_name):
     # Open webpage link and wait to load
     driver.get(link)
     sleep(1)
+    # TODO: Add step to close/accept privacy/cookie settings DOM pop-ups
     # Write webpage source to HTML file
     with open(full_file_path, 'w+') as f:
         f.write(driver.page_source)
