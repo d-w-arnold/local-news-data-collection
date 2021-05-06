@@ -36,9 +36,8 @@ def save_webpage_from_URL(driver, link, output_dir_name):
     # Open tab
     # (Keys.CONTROL + 'w') on other OSs.
     driver.find_element_by_tag_name('body').send_keys(Keys.COMMAND + 't')
-    # Open webpage link and wait to load
+    # Open webpage link
     driver.get(link)
-    sleep(1)
     # TODO: Add step to close/accept privacy/cookie settings DOM pop-ups
     # Write webpage source to HTML file
     with open(full_file_path, 'w+') as f:

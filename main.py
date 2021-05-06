@@ -13,6 +13,7 @@ def print_finished():
 
 def get_webdriver_options():
     options = Options()
+    options.page_load_strategy = 'normal'
     options.add_argument("--disable-notifications")
     options.add_argument("--disable-popup-blocking")
     return options
@@ -27,7 +28,7 @@ def main():
         last_arg = sys.argv[len(sys.argv) - 1]
         # Start-up a Google Chrome browser to be controlled by selenium.webdriver
         driver = webdriver.Chrome(executable_path=chromedriver_binary.chromedriver_filename,
-                                  chrome_options=get_webdriver_options())
+                                  options=get_webdriver_options())
         if last_arg == "simple":
             # Run 'simple' version of Python 3 program
             gen_only_home_mhtmls(driver, list_of_links, failed_links, output_dir_name="mhtmls")
