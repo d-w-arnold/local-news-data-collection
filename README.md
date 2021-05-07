@@ -17,5 +17,5 @@ python3 -m pip install -r ./requirements.txt
 
 ### Generated PDFs and TXTs
 
-Generated PDFs can be found in `./pdfs` and generated TXTs can be found in `./directory_of_links`, these directories
-will be deleted on successive runs of the Python program.
+Generated PDFs can be found in `./mhtmls` and generated TXTs can be found in `./list_of_links`, these directories will
+be deleted on successive runs of the Python program.

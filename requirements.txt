@@ -1,1 +1,4 @@
 beautifulsoup4>=4.9.3
+chromedriver-binary==90.0.4430.24.0
+pyautogui>=0.9.52
+selenium>=3.141.0
