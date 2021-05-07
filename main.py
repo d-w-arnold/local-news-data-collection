@@ -31,7 +31,7 @@ def main():
                                   options=get_webdriver_options())
         if last_arg == "simple":
             # Run 'simple' version of Python 3 program
-            gen_only_home_mhtmls(driver, list_of_links, failed_links, output_dir_name="mhtmls")
+            gen_only_home_mhtmls(driver, list_of_links, failed_links, output_dir_name="htmls")
         elif last_arg == "all":
             # Run 'all' version of Python 3 program
             gen_mhtmls(driver, list_of_links, dict_of_links, failed_links, output_dir_name="mhtmls")
