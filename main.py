@@ -2,7 +2,7 @@ import sys
 import chromedriver_binary
 
 from links import read_list_of_links, gen_dict_of_links
-from mhtmls import gen_mhtmls, gen_only_home_mhtmls
+from htmls import gen_htmls, gen_only_home_htmls
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
@@ -31,15 +31,15 @@ def main():
                                   options=get_webdriver_options())
         if last_arg == "simple":
             # Run 'simple' version of Python 3 program
-            gen_only_home_mhtmls(driver, list_of_links, failed_links, output_dir_name="htmls")
+            gen_only_home_htmls(driver, list_of_links, failed_links, output_dir_name="htmls")
         elif last_arg == "all":
             # Run 'all' version of Python 3 program
-            gen_mhtmls(driver, list_of_links, dict_of_links, failed_links, output_dir_name="mhtmls")
+            gen_htmls(driver, list_of_links, dict_of_links, failed_links, output_dir_name="htmls")
         print_finished()
     else:
         print("ERROR: No argument provided. Please provide one of the following options:\n" +
-              "simple - to get list_of_links and mhtmls of only URLs in links.txt file\n" +
-              "all - to get list_of_links and mhtmls of URLs in links.txt file and URLs found on each webpage" +
+              "simple - to get list_of_links and HMTL files of only URLs in links.txt file\n" +
+              "all - to get list_of_links and HTML files of URLs in links.txt file and URLs found on each webpage" +
               "(e.g. $ python3 main.py simple)")
         exit(1)
 

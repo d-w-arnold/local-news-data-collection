@@ -23,7 +23,7 @@ def save_as_on_webpage(driver, formatted_link):
     sleep(10)
 
 
-def save_webpage_from_URL(driver, link, output_dir_name):
+def save_webpage_from_URL(driver, link, output_dir_name, child_webpage=False):
     # TODO: Replace logic to actually produce MHTML archive, instead of HTML file
     save_dir = os.path.join(os.getcwd(), output_dir_name)
     formatted_link = link.replace("://", "_").replace("/", "_")
@@ -48,33 +48,40 @@ def save_webpage_from_URL(driver, link, output_dir_name):
     # Close the tab
     # (Keys.CONTROL + 'w') on other OSs.
     driver.find_element_by_tag_name('body').send_keys(Keys.COMMAND + 'w')
-    print("** Saved webpage for the following URL: {}\n\t\tat the path: {} **".format(link, full_file_path))
+    if child_webpage:
+        print("** Saved child webpage **")
+        print("\t-- URL: {}".format(link))
+        print("\t-- Saved path: {}".format(full_file_path))
+    else:
+        print("\n** Saved home webpage **")
+        print("\t-- URL: {}".format(link))
+        print("\t-- Saved path: {}\n".format(full_file_path))
 
 
-def gen_mhtmls(driver, list_of_links, dict_of_links, failed_links, output_dir_name):
-    print("\n** Generating MHTMLs using list of URLs and dictionary of URLs **\n")
+def gen_htmls(driver, list_of_links, dict_of_links, failed_links, output_dir_name):
+    print("\n** Generating HTMLs using list of URLs and dictionary of URLs **\n")
     prepare_dir(output_dir_name)
     for link in list_of_links:
         if link not in failed_links:
-            print("\n** Generating MHTMLs for: {} **\n".format(link))
+            print("\n** Generating HTMLs for: {} **\n".format(link))
             save_webpage_from_URL(driver, link, output_dir_name)
             url_domain = re.search('https?://([A-Za-z_0-9.-]+).*', link).group(1)
-            path_for_link_mhtml = os.path.join(os.getcwd(), output_dir_name, "<" + url_domain + ">")
-            if not (os.path.isdir(path_for_link_mhtml)):
-                print("\n** Making directory: {} **\n".format(path_for_link_mhtml))
-                os.mkdir(path_for_link_mhtml)
+            path_for_link_html = os.path.join(os.getcwd(), output_dir_name, "<" + url_domain + ">")
+            if not (os.path.isdir(path_for_link_html)):
+                print("\n** Making directory: {} **\n".format(path_for_link_html))
+                os.mkdir(path_for_link_html)
             for lnk in dict_of_links[link]:
-                save_webpage_from_URL(driver, link=lnk, output_dir_name=path_for_link_mhtml)
+                save_webpage_from_URL(driver, link=lnk, output_dir_name=path_for_link_html, child_webpage=True)
     driver.close()
     print()
 
 
-def gen_only_home_mhtmls(driver, list_of_links, failed_links, output_dir_name):
-    print("\n** Generating home MTHMLs using list of URLs **\n")
+def gen_only_home_htmls(driver, list_of_links, failed_links, output_dir_name):
+    print("\n** Generating home HTMLs using list of URLs **\n")
     prepare_dir(output_dir_name)
     for link in list_of_links:
         if link not in failed_links:
-            print("\n** Generating MHTML for: {} **\n".format(link))
+            print("\n** Generating HTML for: {} **\n".format(link))
             save_webpage_from_URL(driver, link, output_dir_name)
     driver.close()
     print()

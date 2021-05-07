@@ -1,8 +1,8 @@
 #!/bin/bash -e
 
 options_msg="Please provide one of the following options:"
-simple_desc="'simple' - to get list_of_links and mhtmls of only URLs in links.txt file"
-all_desc="'all' - to get list_of_links and mhtmls of URLs in links.txt file and URLs found on each webpage"
+simple_desc="'simple' - to get list_of_links and HMTL files of only URLs in links.txt file"
+all_desc="'all' - to get list_of_links and HTML files of URLs in links.txt file and URLs found on each webpage"
 example_cmd="(e.g. $ bash run_data_collection.sh simple)"
 
 build_venv() {
