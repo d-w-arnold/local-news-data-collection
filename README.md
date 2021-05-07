@@ -8,7 +8,7 @@ There are two versions of this program, both versions initially produce TXT file
 
 The 'simple' version then visits each URL listed in `links.txt`, and generates a HTML file for each webpage visited.
 
-The 'all' version then visits each URL listed in `links.txt`, generates a HTML file for each webpage visited, and also also visits each URL found on each webpage and generates a HTML file for each of those webpages too.
+The 'all' version then visits each URL listed in `links.txt`, generates a HTML file for each webpage visited, and also visits each URL found on each webpage and generates a HTML file for each of those webpages too.
 
 ### How to run via Bash script:
 
@@ -38,7 +38,7 @@ python3 main.py simple
 python3 main.py all
 ```
 
-### Generated PDFs and TXTs
+### Generated HTMLs and TXTs
 
 Generated HTML files can be found in `./htmls` and generated TXTs can be found in `./list_of_links`, these directories will
 be deleted on successive runs of the Python program.
