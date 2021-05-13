@@ -1,22 +1,12 @@
 import sys
-import chromedriver_binary
 
-from links import read_list_of_links, gen_dict_of_links
 from htmls import gen_htmls, gen_only_home_htmls
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from links import read_list_of_links, gen_dict_of_links
+from manage_webdriver import setup_webdriver
 
 
 def print_finished():
     print("\n** Finished **\n")
-
-
-def get_webdriver_options():
-    options = Options()
-    options.page_load_strategy = 'normal'
-    options.add_argument("--disable-notifications")
-    options.add_argument("--disable-popup-blocking")
-    return options
 
 
 def main():
@@ -27,14 +17,14 @@ def main():
         dict_of_links, failed_links = gen_dict_of_links(list_of_links, output_dir_name="list_of_links")
         last_arg = sys.argv[len(sys.argv) - 1]
         # Start-up a Google Chrome browser to be controlled by selenium.webdriver
-        driver = webdriver.Chrome(executable_path=chromedriver_binary.chromedriver_filename,
-                                  options=get_webdriver_options())
+        htmls_output_dir = "htmls"
+        driver = setup_webdriver(output_dir=htmls_output_dir)
         if last_arg == "simple":
             # Run 'simple' version of Python 3 program
-            gen_only_home_htmls(driver, list_of_links, failed_links, output_dir_name="htmls")
+            gen_only_home_htmls(driver, list_of_links, failed_links, output_dir_name=htmls_output_dir)
         elif last_arg == "all":
             # Run 'all' version of Python 3 program
-            gen_htmls(driver, list_of_links, dict_of_links, failed_links, output_dir_name="htmls")
+            gen_htmls(driver, list_of_links, dict_of_links, failed_links, output_dir_name=htmls_output_dir)
         print_finished()
     else:
         print("ERROR: No argument provided. Please provide one of the following options:\n" +
